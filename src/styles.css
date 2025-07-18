@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1, p {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Make container full width */
+.container-fluid,
+.container {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Remove padding from all rows if needed */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}

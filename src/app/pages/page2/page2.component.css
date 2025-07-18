@@ -1,0 +1,73 @@
+.page2-home {
+  position: relative;
+  min-height: 85vh;
+  background: url('https://t3.ftcdn.net/jpg/08/93/83/12/360_F_893831245_0rldpUgiXOFu6ijoksW2rUMNZWmeG9nv.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding-top: 5vh;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Custom brand color */
+.notube-brand {
+  color: #8B0000;
+  font-weight: 700;
+  text-shadow:
+    0 0 5px #8B0000,
+    0 0 10px #FF0000,
+    0 0 15px #FF4500;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Glowing pulse animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #8B0000,
+      0 0 10px #FF0000,
+      0 0 15px #FF4500;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #FF0000,
+      0 0 20px #FF6347,
+      0 0 30px #FF6347;
+  }
+}
+
+/* Progress bar container */
+.custom-progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+/* Animated progress bar */
+.custom-progress-bar .progress-bar {
+  background: linear-gradient(90deg, #ff0000, #8B0000);
+  box-shadow: 0 0 15px #ff0000;
+  transition: width 0.05s linear;
+  border-radius: 1.25rem;
+}
+
+/* Button style */
+.btn-dark {
+  background-color: #8B0000;
+  border: none;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.9);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-dark:hover {
+  background-color: #b22222;
+  box-shadow: 0 0 20px rgba(178, 34, 34, 1);
+}
+
+

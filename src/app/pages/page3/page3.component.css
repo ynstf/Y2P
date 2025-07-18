@@ -1,0 +1,71 @@
+.page3-home {
+  min-height: 90vh;
+  background: url('https://t3.ftcdn.net/jpg/08/93/83/12/360_F_893831245_0rldpUgiXOFu6ijoksW2rUMNZWmeG9nv.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.content {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.classy-title {
+  color: #8B0000;
+  text-shadow: 0 0 6px rgba(139, 0, 0, 0.6);
+}
+
+.muted-text {
+  color: #ccc;
+}
+
+.video-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.03);
+}
+
+.preview-img {
+  border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn-danger {
+  background-color: #8B0000;
+  border: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #a30000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.btn-outline-light {
+  font-weight: bold;
+  border: 2px solid white;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: white;
+  color: #8B0000;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,23 @@
+:host {
+  background-color: #ffb347; /* honey amber */
+  color: #4b2e00; /* dark brown */
+  padding: 1rem 0;
+  text-align: center;
+  box-shadow: 0 -3px 10px rgba(255, 179, 71, 0.5);
+  flex-shrink: 0; /* don't shrink */
+}
+
+a {
+  color: #4b2e00;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff3b0;
+}
+
+.social-icons i {
+  font-size: 1.25rem;
+}

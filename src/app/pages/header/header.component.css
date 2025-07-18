@@ -1,0 +1,23 @@
+.navbar {
+  background-color: #111 !important;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #dc3545 !important; 
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}

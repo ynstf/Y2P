@@ -1,0 +1,16 @@
+<div class="home-page d-flex flex-column align-items-center justify-content-center text-white text-center">
+  <div class="content container p-4">
+    <h1 class="display-4 fw-bold">Welcome to <span class="fw-bold notube-brand">Y2P</span></h1>
+    <p class="lead mb-4">A smart YouTube-to-code converter that generates  code directly from  video links</p>
+
+    <div class="input-group input-group-lg w-75 mx-auto glassy-input">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Paste your video URL..."
+        [(ngModel)]="videoUrl"
+      />
+      <button class="btn btn-danger" (click)="onSubmit()">Convert</button>
+    </div>
+  </div>
+</div>

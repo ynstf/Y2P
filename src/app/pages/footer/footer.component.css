@@ -1,0 +1,43 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+
+main {
+  flex: 1 0 auto; 
+}
+
+.footer {
+  flex-shrink: 0;
+   background-color: #111 !important;
+  box-shadow: 0 -3px 10px rgba(255, 179, 71, 0.5);
+}
+
+.footer a.text-white {
+  color: #4b2e00;
+  transition: color 0.3s ease;
+}
+
+.footer a.text-white:hover {
+  color: #fff3b0; 
+}
+
+.footer p {
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.social-icons i {
+  font-size: 1.25rem;
+}
+
+.social-icons a {
+  color: #4b2e00; 
+  transition: color 0.3s ease;
+}
