@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Add this import
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page2',
+  standalone: true, // Add this for standalone component
+  imports: [CommonModule], // Add CommonModule to imports array
   templateUrl: './page2.component.html',
   styleUrls: ['./page2.component.css']
 })
