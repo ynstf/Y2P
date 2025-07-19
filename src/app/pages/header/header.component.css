@@ -14,7 +14,7 @@
 }
 
 .nav-link:hover {
-  color: #dc3545 !important; 
+  color: #dc3545 !important; /* red hover effect */
 }
 .navbar {
   position: sticky;

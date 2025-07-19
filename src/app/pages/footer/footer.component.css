@@ -6,7 +6,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
 }
 
 main {
@@ -15,7 +14,8 @@ main {
 
 .footer {
   flex-shrink: 0;
-   background-color: #111 !important;
+  background-color: black !important; /* honey amber color */
+  color: #4b2e00; /* dark brown text for honey vibe */
   box-shadow: 0 -3px 10px rgba(255, 179, 71, 0.5);
 }
 
@@ -25,7 +25,7 @@ main {
 }
 
 .footer a.text-white:hover {
-  color: #fff3b0; 
+  color: #fff3b0 ; /* lighter honey highlight on hover */
 }
 
 .footer p {
@@ -35,9 +35,4 @@ main {
 
 .social-icons i {
   font-size: 1.25rem;
-}
-
-.social-icons a {
-  color: #4b2e00; 
-  transition: color 0.3s ease;
 }
