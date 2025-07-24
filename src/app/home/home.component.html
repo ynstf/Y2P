@@ -4,491 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Y2P - YouTube to Project</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #ff6b6b;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile Menu Button */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            min-height: 100vh;
-        }
-
-        .section {
-            padding: 4rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Converter Section */
-        .converter-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .converter-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-text {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            line-height: 1.6;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .input-group input {
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 50px;
-            width: 350px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-primary {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-primary:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Status Messages */
-        .status-message {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .spinner {
-            border: 4px solid rgba(255, 107, 107, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #ff6b6b;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 1rem auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Download Section */
-        .download-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .download-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .download-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .success {
-            color: #4ecdc4;
-            font-weight: bold;
-            margin: 1rem 0;
-        }
-
-        .error {
-            color: #ff6b6b;
-            font-weight: bold;
-            margin: 1rem 0;
-        }
-
-        /* About Section */
-        .about-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .about-content {
-            color: white;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .feature-description {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Team Section */
-        .team-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .team-role {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff6b6b;
-            margin-bottom: 1rem;
-        }
-
-        .team-description {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .input-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .input-group input {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .section {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            .converter-section,
-            .about-section,
-            .team-section {
-                padding: 2rem;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .section h2 {
-                font-size: 1.8rem;
-            }
-
-            .hero-text {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#converter" class="logo">Y2P</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#converter">Converter</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
+            <!--<a href="#home" class="logo">Y2P</a>-->
+            <img src="new_icon.png" alt="Y2P Logo" class="logo-img">
+            <ul class="nav-links" id="navLinks" [class.active]="false">
+                <li><a href="#home" (click)="scrollToSection('home', $event)">Converter</a></li>
+                <li><a href="#about" (click)="scrollToSection('about', $event)">About</a></li>
+                <li><a href="#team" (click)="scrollToSection('team', $event)">Team</a></li>
             </ul>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <button class="menu-toggle" (click)="toggleMenu()">☰</button>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Converter Section -->
-        <section id="converter" class="section">
-            <div class="converter-section">
-                <div class="converter-container">
-                    <h2>YouTube to Project Converter</h2>
-                    <p class="hero-text">
-                        Transform any YouTube tutorial into a fully runnable project with just one click! 
-                        Our AI-powered engine extracts every code snippet, organizes it into a clean project structure, 
-                        and packages it into a downloadable ZIP file.
-                    </p>
-                    
-                    <div class="input-group">
-                        <input 
-                        type="text" 
-                        id="videoUrl"
-                        placeholder="Enter YouTube video URL" 
+        <!-- Home Page Section -->
+        <section id="home" class="home-page">
+            <div class="home-content">
+                <h1>Welcome to <span class="notube-brand">Y2P</span></h1>
+                <p class="lead">Transform YouTube tutorials into "ready to run" projects with AI powered code extraction</p>
+
+                <div class="glassy-input">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Paste YouTube video URL..."
                         [(ngModel)]="inputValue"
                         [disabled]="isProcessing"
-                        >
-                        <button 
-                        class="btn-primary"
-                        (click)="convert()" 
+                    />
+                    <button 
+                        class="btn" 
+                        (click)="convert()"
                         [disabled]="isProcessing || !inputValue"
-                        >
+                    >
+                        <i class="fas fa-bolt"></i> 
                         {{ isProcessing ? 'Processing...' : 'Convert' }}
-                        </button>
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div 
+                    *ngIf="errorMessage" 
+                    class="status-message error-message"
+                >
+                    <div class="error">{{ errorMessage }}</div>
+                </div>
+
+                <!-- Status Message with Spinner -->
+                <div 
+                    *ngIf="isProcessing && taskMessage" 
+                    class="status-message"
+                >
+                    <div class="spinner"></div>
+                    <div>{{ taskMessage }}</div>
+                    <div *ngIf="taskStatus" class="task-status">
+                        Status: {{ taskStatus }}
                     </div>
+                </div>
 
-
-                    <!-- Status Messages -->
-                    @if (taskMessage) {
-                        
-                        @if (taskStatus === 'pending' || taskStatus === 'processing') {
-                            <div class="status-message">
-                                <p>{{ taskMessage }}</p>
-                                <div class="spinner" id="spinner"></div>
-                            </div>
-                            }
-                        }
-                        
-
-
-
-                    <!-- Download Section -->
-                    @if (downloadUrl) {
-                        <div class="download-section">
-                        <p class="success">{{ convertedValue }}</p>
-                        <a 
-                            [href]="downloadUrl" 
-                            download="project.zip"
-                            class="download-button"
-                            id="downloadBtn"
-                        >
-                            Download Project
-                        </a>
-                        </div>
-                    }
-
-                    <!-- Error Message -->
-                    @if (errorMessage) {
-                        <p class="error" id="errorMessage">{{ errorMessage }}</p>
-                    }
+                <!-- Download Section -->
+                <div 
+                    *ngIf="downloadUrl && convertedValue" 
+                    class="download-section"
+                >
+                    <!-- Video Thumbnail -->
+                    <div *ngIf="getVideoThumbnail(inputValue)" class="video-thumbnail">
+                        <img 
+                            [src]="getVideoThumbnail(inputValue)" 
+                            alt="Video Thumbnail"
+                            class="thumbnail-image"
+                            (error)="onThumbnailError($event)"
+                        />
+                    </div>
+                    
+                    <div class="success">{{ convertedValue }}</div>
+                    <a 
+                        [href]="downloadUrl" 
+                        class="download-button"
+                        download
+                    >
+                        <i class="fas fa-download"></i> Download Project
+                    </a>
                 </div>
             </div>
         </section>
+
 
         <!-- About Section -->
         <section id="about" class="section">
@@ -503,7 +108,7 @@
                     
                     <div class="features-grid">
                         <div class="feature-card">
-                            <div class="feature-icon">🎯</div>
+                            <div class="feature-icon"><i class="fas fa-paste"></i></div>
                             <div class="feature-title">Paste & Process</div>
                             <div class="feature-description">
                                 Input any YouTube tutorial URL, hit submit, and the backend kicks off the extraction process.
@@ -511,7 +116,7 @@
                         </div>
                         
                         <div class="feature-card">
-                            <div class="feature-icon">🤖</div>
+                            <div class="feature-icon"><i class="fas fa-robot"></i></div>
                             <div class="feature-title">AI-Powered Analysis</div>
                             <div class="feature-description">
                                 Our smart engine uses AI to identify every code snippet in the tutorial with precision.
@@ -519,7 +124,7 @@
                         </div>
                         
                         <div class="feature-card">
-                            <div class="feature-icon">📦</div>
+                            <div class="feature-icon"><i class="fas fa-cube"></i></div>
                             <div class="feature-title">Structured Archive</div>
                             <div class="feature-description">
                                 All snippets are organized into a clear project structure and bundled into a ZIP for download.
@@ -527,7 +132,7 @@
                         </div>
                         
                         <div class="feature-card">
-                            <div class="feature-icon">⚡</div>
+                            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                             <div class="feature-title">Modern Tech</div>
                             <div class="feature-description">
                                 FastAPI powers the backend API, while Angular provides a smooth frontend interface.
@@ -535,7 +140,7 @@
                         </div>
                         
                         <div class="feature-card">
-                            <div class="feature-icon">🚀</div>
+                            <div class="feature-icon"><i class="fas fa-rocket"></i></div>
                             <div class="feature-title">Ready to Run</div>
                             <div class="feature-description">
                                 The output is a ready-to-run project archive—just unzip and you've got all the code examples.
@@ -543,7 +148,7 @@
                         </div>
                         
                         <div class="feature-card">
-                            <div class="feature-icon">💻</div>
+                            <div class="feature-icon"><i class="fas fa-code"></i></div>
                             <div class="feature-title">Multi-Language Support</div>
                             <div class="feature-description">
                                 Works with Python, JavaScript, Java, C#, and many other programming languages.
@@ -551,6 +156,27 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="how-it-works">
+                    <h3>How It Works</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Paste URL</h4>
+                            <p>Enter the YouTube tutorial link</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Processing</h4>
+                            <p>Our AI fetches and extracts code snippets</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Download</h4>
+                            <p>Get a ready-to-run project archive</p>
+                        </div>
+                    </div>
             </div>
         </section>
 
@@ -592,70 +218,22 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="about-content" style="margin-top: 3rem; text-align: center;">
-                    <p>
-                        <strong>How It Works:</strong>
-                    </p>
-                    <p>
-                        1. <strong>Paste URL:</strong> Enter the YouTube tutorial link<br>
-                        2. <strong>Processing:</strong> Our AI fetches the transcript and extracts code snippets<br>
-                        3. <strong>Download:</strong> Get a ready-to-run project archive instantly
-                    </p>
-                </div>
             </div>
         </section>
     </div>
 
-    <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    document.getElementById('navLinks').classList.remove('active');
-                }
-            });
-        });
-
-        // Demo conversion function
-        function convertVideo() {
-            const url = document.getElementById('videoUrl').value;
-            if (!url) return;
-
-            // Show loading state
-            document.getElementById('statusMessage').style.display = 'block';
-            document.getElementById('downloadSection').style.display = 'none';
-            document.getElementById('errorMessage').style.display = 'none';
-
-            // Simulate processing
-            setTimeout(() => {
-                document.getElementById('statusMessage').style.display = 'none';
-                document.getElementById('downloadSection').style.display = 'block';
-            }, 3000);
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Y2P - YouTube to Project</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2025-{{ currentYear }} Y2P. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

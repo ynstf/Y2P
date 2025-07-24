@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global Styles - Add this to your src/styles.css file */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background: #0c0c0c !important;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 20%) !important;
+}
+
+app-root {
+    display: block;
+    min-height: 100vh;
+    background: #0c0c0c;
+}
+
+/* Ensure no white backgrounds anywhere */
+.ng-star-inserted {
+    background: transparent;
+}
+
+/* Override any default Angular Material or other library backgrounds */
+.mat-app-background,
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
+    background: #0c0c0c !important;
+}
+
+/* Remove any default browser styles that might show white */
+::-webkit-scrollbar {
+    width: 12px;
+    background: #0c0c0c;
+}
+
+::-webkit-scrollbar-track {
+    background: #0c0c0c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8B0000;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4d4d;
+}
+
+/* Firefox scrollbar */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #8B0000 #0c0c0c;
+}
